@@ -6,16 +6,19 @@ export default class extends Phaser.Sprite {
     this.anchor.setTo(1)
     this.scale.setTo(1)
     this.game.physics.arcade.enable(this)
+    this.body.mass = 0
     this.body.bounce.y = 0
     this.body.gravity.y = 0
     this.body.gravity.x = 0
     this.body.velocity.x = 0
     this.body.collideWorldBounds = true
+    this.body.setSize(30, 25, 13, 35)
 
     this.game.camera.follow(this, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
     this.initMouvement()
     this.initAnimation()
   }
+
   update () {
     this.body.velocity.y = 0
     this.body.velocity.x = 0

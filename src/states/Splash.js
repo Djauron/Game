@@ -16,6 +16,10 @@ export default class extends Phaser.State {
     this.load.tilemap('MapOneJSON', '/assets/mapOne/mapOne.json', null, Phaser.Tilemap.TILED_JSON)
     this.load.image('MapOnePNG', '/assets/mapOne/level.png')
     this.load.spritesheet('player', '/assets/images/player.png', 65, 64)
+
+    // PNJ
+    this.load.spritesheet('pnjOne', '/assets/pnj/pnjOne.png', 65, 64)
+    this.load.json('speechPnj', '/assets/pnj/pnjOne.json')
   }
 
   create () {
