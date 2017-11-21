@@ -1,6 +1,7 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
 import Player from '../sprites/Player'
+import Pnj from '../sprites/Pnj'
 
 export default class extends Phaser.State {
   init () {}
@@ -24,16 +25,29 @@ export default class extends Phaser.State {
       asset: 'player'
     })
 
+    this.pnj = new Pnj({
+      game: this.game,
+      x: 1384.0,
+      y: 1621.0,
+      asset: 'pnjOne',
+      pnjId: 'Princess'
+    })
+
     this.game.add.existing(this.player)
+    this.game.add.existing(this.pnj)
   }
 
   update () {
     this.game.physics.arcade.collide(this.player, this.groundLayer)
+    this.game.physics.arcade.collide(this.player, this.pnj)
+    this.game.physics.arcade.collide(this.pnj, this.groundLayer)
   }
 
   render () {
     if (__DEV__) {
       this.game.debug.spriteInfo(this.player, 32, 32)
+      this.game.debug.body(this.player)
+      this.game.debug.body(this.pnj)
     }
   }
 }
