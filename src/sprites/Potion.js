@@ -1,15 +1,15 @@
 import Phaser from 'phaser'
+import Item from '../lib/Item'
+
 export default class extends Phaser.Sprite {
   constructor ({ game, x, y, asset }) {
     super(game, x, y, asset)
     this.game = game
-    this.anchor.setTo(1.2)
-    this.scale.setTo(1.2)
+    this.scale.setTo(0.2)
     this.game.physics.arcade.enable(this)
 
-    this.body.collideWorldBounds = true
-  }
-  update () {
+    this.item = new Item(this)
 
+    this.game.add.existing(this)
   }
 }

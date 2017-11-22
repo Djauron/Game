@@ -3,6 +3,10 @@ export default class extends Phaser.Sprite {
   constructor ({ game, x, y, asset }) {
     super(game, x, y, asset)
     this.game = game
+    this.stuff = {
+      potion: 0,
+      gold: 0
+    }
     this.anchor.setTo(1)
     this.scale.setTo(1)
     this.game.physics.arcade.enable(this)

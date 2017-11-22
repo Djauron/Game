@@ -2,6 +2,9 @@
 import Phaser from 'phaser'
 import Player from '../sprites/Player'
 import Pnj from '../sprites/Pnj'
+import Potion from '../sprites/Potion'
+import Gold from '../sprites/Gold'
+import Box from '../sprites/Box'
 
 export default class extends Phaser.State {
   init () {}
@@ -10,6 +13,10 @@ export default class extends Phaser.State {
 
   create () {
     this.game.physics.startSystem(Phaser.Physics.ARCADE)
+
+    this.items = []
+    this.box = []
+
     this.map = this.add.tilemap('MapOneJSON')
     this.map.addTilesetImage('tiles', 'MapOnePNG')
     this.map.addTilesetImage('tiles1', 'MapTwoPNG')
@@ -23,6 +30,7 @@ export default class extends Phaser.State {
     this.map.setCollisionBetween(0, 10000, true, 'Mur')
     this.map.setCollisionBetween(0, 10000, true, 'Mur2')
     this.sol.resizeWorld()
+    this.createItems()
 
     this.player = new Player({
       game: this.game,
@@ -49,6 +57,45 @@ export default class extends Phaser.State {
     this.game.physics.arcade.collide(this.player, this.pnj)
     this.game.physics.arcade.collide(this.pnj, this.mur)
     this.game.physics.arcade.collide(this.pnj, this.murTwo)
+    this.items.map(item => {
+      this.game.physics.arcade.collide(this.player, item)
+    })
+    this.box.map(b => {
+      this.game.physics.arcade.collide(this.player, b)
+      this.game.physics.arcade.collide(b, this.mur)
+      this.game.physics.arcade.collide(b, this.murTwo)
+    })
+  }
+
+  createItems () {
+    // create items
+    if (this.map.objects['item']) {
+      const objects = this.map.objects['item']
+      objects.forEach(object => {
+        if (object.type === 'potion') {
+          this.items.push(new Potion({
+            game: this.game,
+            x: object.x,
+            y: object.y,
+            asset: 'potion'
+          }))
+        } else if (object.type === 'gold') {
+          this.items.push(new Gold({
+            game: this.game,
+            x: object.x,
+            y: object.y,
+            asset: 'gold'
+          }))
+        } else if (object.type === 'box') {
+          this.box.push(new Box({
+            game: this.game,
+            x: object.x,
+            y: object.y,
+            asset: 'box'
+          }))
+        }
+      })
+    }
   }
 
   render () {
