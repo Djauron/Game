@@ -21,6 +21,8 @@ export default class extends Phaser.State {
     this.load.image('gold', 'assets/images/gold.png')
     this.load.image('box', 'assets/images/Box.png')
     this.load.spritesheet('player', '/assets/images/player.png', 65, 64)
+    this.load.audio('MusicMapOne', '/assets/Music/Desert Theme.mp3')
+    this.load.image('inventory', '/assets/images/inventory.png')
 
     // PNJ
     this.load.spritesheet('pnjOne', '/assets/pnj/pnjOne.png', 65, 64)

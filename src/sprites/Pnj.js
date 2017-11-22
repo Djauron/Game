@@ -17,7 +17,6 @@ export default class extends Phaser.Sprite {
     this.body.immovable = true
     this.body.setSize(30, 50, 17, 35)
     this.speech = this.game.cache.getJSON('speechPnj')
-    // this.speech.pnjId
 
     Object.keys(this.speech).map((perso) => {
       if (perso === pnjId) {

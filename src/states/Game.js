@@ -29,6 +29,7 @@ export default class extends Phaser.State {
     this.solEau = this.map.createLayer('SolEau')
     this.map.setCollisionBetween(0, 10000, true, 'Mur')
     this.map.setCollisionBetween(0, 10000, true, 'Mur2')
+    this.music = this.game.add.audio('MusicMapOne')
     this.sol.resizeWorld()
     this.createItems()
 
@@ -49,6 +50,8 @@ export default class extends Phaser.State {
 
     this.game.add.existing(this.player)
     this.game.add.existing(this.pnj)
+    this.music.play()
+    this.music.loopFull()
   }
 
   update () {
@@ -64,11 +67,12 @@ export default class extends Phaser.State {
       this.game.physics.arcade.collide(this.player, b)
       this.game.physics.arcade.collide(b, this.mur)
       this.game.physics.arcade.collide(b, this.murTwo)
+      this.game.physics.arcade.collide(this.player, b)
     })
   }
 
   createItems () {
-    // create items
+    // creation d'items
     if (this.map.objects['item']) {
       const objects = this.map.objects['item']
       objects.forEach(object => {

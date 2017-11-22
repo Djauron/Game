@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import Inventory from '../sprites/Inventory'
 export default class extends Phaser.Sprite {
   constructor ({ game, x, y, asset }) {
     super(game, x, y, asset)
@@ -21,6 +22,11 @@ export default class extends Phaser.Sprite {
     this.game.camera.follow(this, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
     this.initMouvement()
     this.initAnimation()
+
+    this.inventory = new Inventory({
+      game: this.game,
+      stuff: this.stuff
+    })
   }
 
   update () {
