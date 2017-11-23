@@ -19,10 +19,8 @@ export default class extends Phaser.Sprite {
     this.speech = this.game.cache.getJSON('speechPnj')
 
     Object.keys(this.speech).map((perso) => {
-      console.log(pnjId)
       if (perso === pnjId) {
         this.info = this.speech[perso]
-        console.log(this.info)
       }
     })
 
@@ -84,6 +82,7 @@ export default class extends Phaser.Sprite {
   openDialog () {
     if (this.game.paused === false) {
       this.game.paused = true
+      this.game.openByPnj = true
       this.choiseLabel = this.game.add.text(this.game.camera.x + (this.game.width / 2), this.game.camera.y + (this.game.width / 2), this.info.text, { font: '30px Arial', fill: '#fff' })
       this.choiseLabel.anchor.setTo(0.5, 0.5)
       this.choiseLabel.setTextBounds(0, 100, 800, 100)
@@ -91,6 +90,7 @@ export default class extends Phaser.Sprite {
   }
 
   closeDialog () {
+    this.game.openByPnj = false
     this.game.paused = false
     this.choiseLabel.destroy()
   }

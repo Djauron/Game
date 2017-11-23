@@ -10,7 +10,7 @@ export default class extends Phaser.Sprite {
 
   inventory () {
     this.game.input.keyboard.onPressCallback = (e) => {
-      if (e === 'i') {
+      if (e === 'i' && !this.game.openByPnj) {
         if (this.game.paused === false) {
           this.openInventory()
         } else {
@@ -21,6 +21,7 @@ export default class extends Phaser.Sprite {
   }
 
   openInventory () {
+    this.player.openByPnj = false
     if (this.game.paused === false) {
       this.game.paused = true
       this.bg = this.game.add.sprite(this.game.camera.x, this.game.camera.y, 'inventory')
@@ -58,7 +59,7 @@ export default class extends Phaser.Sprite {
   }
 
   effectPotion () {
-    if (this.stuff.potion && this.stuff.potion > 0 && this.player.life < 3) {
+    if (this.stuff.potion && this.stuff.potion > 0 && this.player.life < 3 && !this.game.openByPnj) {
       this.closeInventory()
       this.player.life++
       this.stuff.potion--

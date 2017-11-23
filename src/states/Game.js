@@ -1,4 +1,3 @@
-/* globals __DEV__ */
 import Phaser from 'phaser'
 import Player from '../sprites/Player'
 import Pnj from '../sprites/Pnj'
@@ -54,7 +53,8 @@ export default class extends Phaser.State {
       x: 1918.0,
       y: 1681.0,
       asset: 'pnjElf',
-      pnjId: 'Elf'
+      pnjId: 'Elf',
+      player: this.player
     })
 
     this.game.add.existing(this.player)

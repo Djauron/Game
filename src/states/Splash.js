@@ -24,7 +24,7 @@ export default class extends Phaser.State {
     this.load.audio('MusicMapOne', '/assets/Music/Desert Theme.mp3')
     this.load.audio('lifePotion', '/assets/Music/Pickup_03.mp3')
     this.load.audio('collectCoin', '/assets/Music/Collect_Point_01.mp3')
-    this.load.audio('collectPotion', '/assets/Music/Collect_Point_01.mp3')
+    this.load.audio('collectPotion', '/assets/Music/potionpick.wav')
     this.load.image('inventory', '/assets/images/inventory.png')
     this.load.image('heart', '/assets/images/heart.png')
 
