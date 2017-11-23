@@ -42,9 +42,30 @@ export default class extends Phaser.Sprite {
     }
   }
 
+  openPnjInventory () {
+    this.bg = this.game.add.sprite(this.game.camera.x, 0, 'inventory')
+    this.bg.scale.setTo(0.5)
+    this.bg.fixedToCamera = true
+
+    this.potion = this.game.add.sprite(this.game.camera.x + 100, 200, 'potion')
+    this.potion.scale.setTo(0.2)
+    this.potion.fixedToCamera = true
+
+    this.potion.inputEnabled = true
+    this.potion.events.onInputDown.add(this.buyPotion, this)
+  }
+
+  closePnjInventory () {
+    this.bg.destroy()
+    if (this.potion) {
+      this.potion.destroy()
+    }
+  }
+
   openDialog () {
     if (this.game.paused === false) {
       this.player.inventory.openInventory()
+      this.openPnjInventory()
       this.game.openByPnj = true
       this.game.paused = true
       this.vendorSpeech = this.game.add.text(this.game.camera.x + (this.game.width / 2), this.game.camera.y + (this.game.width / 2), this.info.text, { font: '30px Arial', fill: '#fff' })
@@ -58,5 +79,21 @@ export default class extends Phaser.Sprite {
     this.game.paused = false
     this.player.inventory.closeInventory()
     this.vendorSpeech.destroy()
+    this.closePnjInventory()
+    setTimeout(() => {
+      this.buyDescribe.destroy()
+    }, 2000)
+  }
+
+  buyPotion () {
+    if (this.player.stuff.gold && this.player.stuff.gold > 0) {
+      this.player.stuff.gold--
+      this.player.stuff.potion++
+
+      this.buyDescribe = this.game.add.text(this.game.camera.width / 2, this.game.camera.width / 2, 'You buy 1 Potion', { font: '30px Arial', fill: '#fff' })
+      this.buyDescribe.anchor.setTo(0.5, 0.5)
+      this.buyDescribe.setTextBounds(0, 100, 800, 100)
+      this.buyDescribe.fixedToCamera = true
+    }
   }
 }
