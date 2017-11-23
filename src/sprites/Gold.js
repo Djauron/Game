@@ -8,7 +8,7 @@ export default class extends Phaser.Sprite {
     this.scale.setTo(0.15)
     this.game.physics.arcade.enable(this)
 
-    this.item = new Item(this)
+    this.item = new Item(this, game)
 
     this.game.add.existing(this)
   }

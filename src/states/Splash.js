@@ -22,10 +22,15 @@ export default class extends Phaser.State {
     this.load.image('box', 'assets/images/Box.png')
     this.load.spritesheet('player', '/assets/images/player.png', 65, 64)
     this.load.audio('MusicMapOne', '/assets/Music/Desert Theme.mp3')
+    this.load.audio('lifePotion', '/assets/Music/Pickup_03.mp3')
+    this.load.audio('collectCoin', '/assets/Music/Collect_Point_01.mp3')
+    this.load.audio('collectPotion', '/assets/Music/Collect_Point_01.mp3')
     this.load.image('inventory', '/assets/images/inventory.png')
+    this.load.image('heart', '/assets/images/heart.png')
 
     // PNJ
     this.load.spritesheet('pnjOne', '/assets/pnj/pnjOne.png', 65, 64)
+    this.load.spritesheet('pnjElf', '/assets/pnj/pnjElf.png', 65, 64)
     this.load.json('speechPnj', '/assets/pnj/pnjOne.json')
   }
 

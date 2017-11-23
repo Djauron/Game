@@ -3,8 +3,8 @@
 		"id" : "Princess",
 		"text":"What am I, the town crier? Get lost."
 	},
-	"Orc":{
-		"id" : "Orc",
-		"text":"You've got eyes. Find them yourself."
+	"Elf":{
+		"id" : "Elf",
+		"text":"What you gonna buy ?"
 	}
 }

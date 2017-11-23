@@ -5,6 +5,7 @@ import Pnj from '../sprites/Pnj'
 import Potion from '../sprites/Potion'
 import Gold from '../sprites/Gold'
 import Box from '../sprites/Box'
+import Vendor from '../sprites/Vendor'
 
 export default class extends Phaser.State {
   init () {}
@@ -48,13 +49,24 @@ export default class extends Phaser.State {
       pnjId: 'Princess'
     })
 
+    this.vendor = new Vendor({
+      game: this.game,
+      x: 1918.0,
+      y: 1681.0,
+      asset: 'pnjElf',
+      pnjId: 'Elf'
+    })
+
     this.game.add.existing(this.player)
     this.game.add.existing(this.pnj)
+    this.game.add.existing(this.vendor)
     this.music.play()
     this.music.loopFull()
   }
 
   update () {
+    this.game.physics.arcade.collide(this.player, this.vendor)
+    this.game.physics.arcade.collide(this.pnj, this.vendor)
     this.game.physics.arcade.collide(this.player, this.mur)
     this.game.physics.arcade.collide(this.player, this.murTwo)
     this.game.physics.arcade.collide(this.player, this.pnj)
@@ -107,6 +119,7 @@ export default class extends Phaser.State {
       this.game.debug.spriteInfo(this.player, 32, 32)
       this.game.debug.body(this.player)
       this.game.debug.body(this.pnj)
+      this.game.debug.body(this.vendor)
     }
   }
 }

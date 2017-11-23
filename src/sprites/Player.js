@@ -8,6 +8,8 @@ export default class extends Phaser.Sprite {
       potion: 0,
       gold: 0
     }
+    this.hearts = []
+    this.life = 1
     this.anchor.setTo(1)
     this.scale.setTo(1)
     this.game.physics.arcade.enable(this)
@@ -22,10 +24,11 @@ export default class extends Phaser.Sprite {
     this.game.camera.follow(this, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
     this.initMouvement()
     this.initAnimation()
+    this.lifePoint()
 
     this.inventory = new Inventory({
       game: this.game,
-      stuff: this.stuff
+      player: this
     })
   }
 
@@ -60,5 +63,21 @@ export default class extends Phaser.Sprite {
     this.animations.add('right', [254, 255, 256, 257, 258, 259, 260], 10, true)
     this.animations.add('bottom', [232, 233, 234, 235, 236, 237, 238], 10, true)
     this.animations.add('top', [185, 186, 187, 188, 189, 190, 191, 192], 10, true)
+  }
+
+  lifePoint () {
+    var heartPos = 50
+    this.hearts.map(heart => {
+      heart.destroy()
+    })
+
+    this.hearts = []
+
+    for (var i = 1; i <= this.life; i++) {
+      this.hearts.push(this.game.add.sprite(heartPos, 50, 'heart'))
+      this.hearts[this.hearts.length - 1].scale.setTo(0.2)
+      this.hearts[this.hearts.length - 1].fixedToCamera = true
+      heartPos += 50
+    }
   }
 }

@@ -19,52 +19,17 @@ export default class extends Phaser.Sprite {
     this.speech = this.game.cache.getJSON('speechPnj')
 
     Object.keys(this.speech).map((perso) => {
-      console.log(pnjId)
       if (perso === pnjId) {
         this.info = this.speech[perso]
-        console.log(this.info)
       }
     })
 
     this.body.onCollide = new Phaser.Signal()
     this.body.onCollide.add(this.dialog, this)
-
-    this.initAnimation()
   }
 
   update () {
-    var randomInt = Math.floor((Math.random() * 2000) + 1)
-    if (randomInt > 0 && randomInt < 5) {
-      this.movePlayer(randomInt)
-    }
-  }
 
-  movePlayer (randomInt) {
-    if (randomInt === 4) {
-      this.body.velocity.y = -100
-      this.animations.play('top')
-    } else if (randomInt === 3) {
-      this.body.velocity.y = 100
-      this.animations.play('bottom')
-    } else if (randomInt === 2) {
-      this.body.velocity.x = 100
-      this.animations.play('right')
-    } else if (randomInt === 1) {
-      this.body.velocity.x = -100
-      this.animations.play('left')
-    }
-    setTimeout(() => {
-      this.body.velocity.y = 0
-      this.body.velocity.x = 0
-      this.animations.stop()
-    }, 1000)
-  }
-
-  initAnimation () {
-    this.animations.add('left', [208, 209, 210, 211, 212, 213, 214, 215], 10, true)
-    this.animations.add('right', [254, 255, 256, 257, 258, 259, 260], 10, true)
-    this.animations.add('bottom', [232, 233, 234, 235, 236, 237, 238], 10, true)
-    this.animations.add('top', [185, 186, 187, 188, 189, 190, 191, 192], 10, true)
   }
 
   dialog (pnj, player) {
