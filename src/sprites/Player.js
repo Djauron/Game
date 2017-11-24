@@ -64,7 +64,7 @@ export default class extends Phaser.Sprite {
   initAnimation () {
     this.animations.add('left', [208, 209, 210, 211, 212, 213, 214, 215], 10, true)
     this.animations.add('right', [254, 255, 256, 257, 258, 259, 260], 10, true)
-    this.animations.add('bottom', [232, 233, 234, 235, 236, 237, 238], 10, true)
+    this.animations.add('bottom', [231, 232, 233, 234, 235, 236, 237, 238], 10, true)
     this.animations.add('top', [185, 186, 187, 188, 189, 190, 191, 192], 10, true)
   }
 
