@@ -21,6 +21,7 @@ export default class extends Phaser.State {
     this.map.addTilesetImage('tiles', 'MapOnePNG')
     this.map.addTilesetImage('tiles1', 'MapTwoPNG')
     this.map.addTilesetImage('tiles2', 'MapThreePNG')
+    this.map.addTilesetImage('tiles4', 'MapFourPNG')
 
     this.sol = this.map.createLayer('Sol')
     this.switch = this.map.createLayer('Switch')

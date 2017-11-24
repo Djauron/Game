@@ -17,6 +17,7 @@ export default class extends Phaser.State {
     this.load.image('MapOnePNG', '/assets/mapOne/level.png')
     this.load.image('MapTwoPNG', '/assets/mapOne/build_atlas.png')
     this.load.image('MapThreePNG', '/assets/mapOne/objMisc.png')
+    this.load.image('MapFourPNG', '/assets/mapOne/terrain.png')
     this.load.image('potion', 'assets/images/potion.png')
     this.load.image('gold', 'assets/images/gold.png')
     this.load.image('box', 'assets/images/Box.png')
