@@ -3,6 +3,7 @@ export default class extends Phaser.Sprite {
   constructor ({ game, x, y, asset, pnjId, player }) {
     super(game, x, y, asset)
     this.player = player
+    this.buyDescribe = null
     this.game = game
     this.nbCollid = 2
     this.info = null
@@ -80,9 +81,12 @@ export default class extends Phaser.Sprite {
     this.player.inventory.closeInventory()
     this.vendorSpeech.destroy()
     this.closePnjInventory()
-    setTimeout(() => {
-      this.buyDescribe.destroy()
-    }, 2000)
+    console.log(this.player.inventory)
+    if (this.buyDescribe) {
+      setTimeout(() => {
+        this.buyDescribe.destroy()
+      }, 2000)
+    }
   }
 
   buyPotion () {
