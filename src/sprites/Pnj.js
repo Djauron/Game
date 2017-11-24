@@ -28,6 +28,8 @@ export default class extends Phaser.Sprite {
     this.body.onCollide.add(this.dialog, this)
 
     this.initAnimation()
+    this.animations.play('bottom')
+    this.animations.stop()
   }
 
   update () {

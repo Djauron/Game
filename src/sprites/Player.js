@@ -26,6 +26,9 @@ export default class extends Phaser.Sprite {
     this.initAnimation()
     this.lifePoint()
 
+    this.animations.play('bottom')
+    this.animations.stop()
+
     this.inventory = new Inventory({
       game: this.game,
       player: this

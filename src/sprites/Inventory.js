@@ -26,6 +26,12 @@ export default class extends Phaser.Sprite {
       this.game.paused = true
       this.bg = this.game.add.sprite(this.game.camera.x, this.game.camera.y, 'inventory')
       this.bg.scale.setTo(0.5)
+
+      this.nameInventory = this.game.add.text(this.game.camera.x + 230, this.game.camera.y, 'Inventory', { font: '30px Arial', fill: '#000000' })
+      this.nameInventory.anchor.setTo(0.5, 0.5)
+      this.nameInventory.setTextBounds(0, 100, 800, 100)
+      this.nameInventory.fixedToCamera = true
+
       this.posItem = {
         x: this.game.camera.x + 50,
         y: this.game.camera.y + 100
@@ -35,7 +41,7 @@ export default class extends Phaser.Sprite {
         y: this.game.camera.y + 20
       }
 
-      if (this.stuff.potion > 0 && this.stuff.potion) {
+      if (this.stuff.potion && this.stuff.potion > 0) {
         this.potion = this.game.add.sprite(this.posItem.x, this.posItem.y, 'potion')
         this.potion.scale.setTo(0.2)
         this.nbPotion = this.game.add.text(this.posTxt.x, this.posTxt.y, 'X' + this.stuff.potion, { font: '26px Arial' })
@@ -46,7 +52,7 @@ export default class extends Phaser.Sprite {
         this.potion.inputEnabled = true
         this.potion.events.onInputDown.add(this.effectPotion, this)
       }
-      if (this.stuff.gold > 0 && this.stuff.gold) {
+      if (this.stuff.gold && this.stuff.gold > 0) {
         this.coin = this.game.add.sprite(this.posItem.x, this.posItem.y, 'gold')
         this.coin.scale.setTo(0.15)
         this.nbCoin = this.game.add.text(this.posTxt.x, this.posTxt.y, 'X' + this.stuff.gold, { font: '26px Arial' })
@@ -78,11 +84,12 @@ export default class extends Phaser.Sprite {
   closeInventory () {
     this.game.paused = false
     this.bg.destroy()
-    if (this.stuff.potion && this.stuff.potion > 0) {
+    this.nameInventory.destroy()
+    if (this.potion) {
       this.potion.destroy()
       this.nbPotion.destroy()
     }
-    if (this.stuff.gold && this.stuff.gold > 0) {
+    if (this.coin) {
       this.coin.destroy()
       this.nbCoin.destroy()
     }
